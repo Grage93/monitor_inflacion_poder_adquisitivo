@@ -7,8 +7,9 @@ import numpy as np
 import pandas as pd
 import statsmodels.api as sm
 
-DATA = Path("data")
-DOCS = Path("docs")
+RAIZ = Path(__file__).resolve().parent.parent
+DATA = RAIZ / "data"
+DOCS = RAIZ / "docs"
 
 
 def cargar_indicadores() -> pd.DataFrame:

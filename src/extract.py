@@ -7,7 +7,7 @@ import pandas as pd
 
 DATASET = "prc_hicp_minr"                      # IPC armonizado, ECOICOP v2 (desde 2026)
 PAISES = ["ES", "DE", "FR", "IT", "PT", "EA"]  # EA = zona euro
-RUTA_SALIDA = Path("data") / "ipc_raw.csv"
+RUTA_SALIDA = Path(__file__).resolve().parent.parent / "data" / "ipc_raw.csv"
 
 
 def descargar_ipc() -> pd.DataFrame:

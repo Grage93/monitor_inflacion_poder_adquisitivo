@@ -4,7 +4,8 @@ from pathlib import Path
 
 import pandas as pd
 
-DATA = Path("data")
+RAIZ = Path(__file__).resolve().parent.parent
+DATA = RAIZ / "data"
 DB = DATA / "monitor.db"
 
 

@@ -7,7 +7,7 @@ import pandas as pd
 
 DATASET = "lc_lci_r2_q"
 PAISES = ["ES", "DE", "FR", "IT", "PT", "EA"]
-RUTA_SALIDA = Path("data") / "salarios_raw.csv"
+RUTA_SALIDA = Path(__file__).resolve().parent.parent / "data" / "salarios_raw.csv"
 
 
 def descargar_salarios() -> pd.DataFrame:

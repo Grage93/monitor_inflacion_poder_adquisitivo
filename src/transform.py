@@ -3,7 +3,8 @@ from pathlib import Path
 
 import pandas as pd
 
-DATA = Path("data")
+RAIZ = Path(__file__).resolve().parent.parent
+DATA = RAIZ / "data"
 
 
 def cargar_ipc_trimestral() -> pd.DataFrame:
@@ -56,6 +57,14 @@ def main() -> None:
 
     datos = ipc.merge(salarios, on=["geo", "trimestre"], how="inner")
     datos = calcular_indicadores(datos)
+
+        # Columnas auxiliares pensadas para Power BI
+    nombres = {
+        "ES": "España", "DE": "Alemania", "FR": "Francia",
+        "IT": "Italia", "PT": "Portugal", "EA": "Zona euro",
+    }
+    datos["pais"] = datos["geo"].map(nombres)
+    datos["fecha"] = datos["trimestre"].dt.to_timestamp()  # primer día del trimestre
 
     salida = DATA / "datos_procesados.csv"
     datos.to_csv(salida, index=False)
