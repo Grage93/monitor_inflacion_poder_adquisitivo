@@ -5,17 +5,17 @@ from pathlib import Path
 import eurostat
 import pandas as pd
 
-DATASET = "prc_hicp_midx"                      # Índices mensuales de precios (HICP)
+DATASET = "prc_hicp_minr"                      # IPC armonizado, ECOICOP v2 (desde 2026)
 PAISES = ["ES", "DE", "FR", "IT", "PT", "EA"]  # EA = zona euro
 RUTA_SALIDA = Path("data") / "ipc_raw.csv"
 
 
 def descargar_ipc() -> pd.DataFrame:
-    """Pide a Eurostat el índice general de precios (CP00) de cada país."""
+    """Pide a Eurostat el índice general de precios de cada país."""
     filtros = {
-        "freq": "M",       # mensual
-        "unit": "I15",     # índice con base 2015 = 100
-        "coicop": "CP00",  # todos los productos (índice general)
+        "freq": "M",            # mensual
+        "unit": "I15",          # índice con base 2015 = 100
+        "coicop18": "TOTAL",    # todos los productos (índice general)
         "geo": PAISES,
     }
     df = eurostat.get_data_df(DATASET, filter_pars=filtros)
@@ -55,3 +55,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+    
